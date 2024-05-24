@@ -116,100 +116,13 @@ chat_history = [
     {"role": "system", "content": "You are a helpful assistant."}
 ]
 
-# @csrf_exempt
-# def chat(request):
-#     """
-#     View to handle continuous chat with the OpenAI API.
-#     """
-#     global chat_history
-    
-
-#     if request.method == 'POST':
-#         user_message = request.POST.get('message')
-#         chat_history.append({"role": "user", "content": user_message})
-
-#         response = client.chat.completions.create(
-#             model="gpt-4o",
-#             messages=chat_history
-#         )
-
-#         assistant_message = response.choices[0].message.content.strip()
-#         #assistant_message = assistant_message.replace('\n', '<br>')
-#         chat_history.append({"role": "assistant", "content": assistant_message})
-
-#         return redirect('chat')  # Redirect to the same page to avoid resubmission
-
-#     return render(request, 'socialai/chat.html', {'chat_history': chat_history})
-
-
-# #working one
-# @csrf_exempt
-# def upload_file(request):
-#     """
-#     View to handle file upload and use ChatGPT to summarize the file content.
-#     """
-#     global chat_history
-
-#     if request.method == 'POST' and request.FILES['file']:
-#         uploaded_file = request.FILES['file']
-#         file_content = uploaded_file.read()  # Read the content before saving the file
-
-#         # Detect file type based on MIME type
-#         file_type = uploaded_file.content_type
-
-#         content = ""
-
-#         try:
-#             if file_type == 'application/pdf':
-#                 # Try to read PDF using pdfminer
-#                 content = extract_text(BytesIO(file_content))
-#             elif file_type.startswith('image/'):
-#                 # Try to read image using pytesseract
-#                 image = Image.open(BytesIO(file_content))
-#                 content = pytesseract.image_to_string(image)
-#             else:
-#                 # Try to detect the file encoding for text files
-#                 result = chardet.detect(file_content)
-#                 encoding = result['encoding']
-#                 if encoding is None:
-#                     encoding = 'utf-8'  # Use a default encoding if none was detected
-#                 content = file_content.decode(encoding)
-#         except Exception as e:
-#             content = f"Unable to read file. Error: {str(e)}"
-        
-#         # Truncate the content if it's too long
-#         MAX_TOKENS = 128000  # This is the maximum for gpt-4o
-#         if len(content) > MAX_TOKENS:
-#             content = content[:MAX_TOKENS]
-        
-#         # Use the OpenAI API to summarize the file content
-#         response = client.chat.completions.create(
-#             model="gpt-4o",
-#             messages=[
-#                 {"role": "system", "content": "You are a helpful assistant."},
-#                 {"role": "user", "content": f"Summarize the following document:\n\n{content}"}
-#             ]
-#         )
-
-#         # Check if the model was able to generate a summary
-#         if response.choices and response.choices[0].message.content.strip():
-#             summary = response.choices[0].message.content.strip()
-#             summary_html = convert_markdown_to_html(summary)
-#         else:
-#             summary = "Unable to generate a summary."
-#             summary_html = convert_markdown_to_html(summary)
-#         chat_history.append({"role": "assistant", "content": summary_html})
-
-#         return redirect('chat')
-
-#     return render(request, 'socialai/chat.html', {'chat_history': chat_history})
-
 @csrf_exempt
 def chat(request):
     """
     View to handle continuous chat with the OpenAI API.
     """
     global chat_history
+    
 
     if request.method == 'POST':
         user_message = request.POST.get('message')
@@ -220,25 +133,20 @@ def chat(request):
             messages=chat_history
         )
 
-        # Check if the model was able to generate a message
-        if response.choices and response.choices[0].message.content.strip():
-            assistant_message = response.choices[0].message.content.strip()
-            assistant_message_html = convert_markdown_to_html(assistant_message)
-        else:
-            assistant_message = "Unable to generate a message."
-            assistant_message_html = convert_markdown_to_html(assistant_message)
-
-        chat_history.append({"role": "assistant", "content": assistant_message_html})
+        assistant_message = response.choices[0].message.content.strip()
+        #assistant_message = assistant_message.replace('\n', '<br>')
+        chat_history.append({"role": "assistant", "content": assistant_message})
 
         return redirect('chat')  # Redirect to the same page to avoid resubmission
 
     return render(request, 'socialai/chat.html', {'chat_history': chat_history})
 
 
+# #working one
 @csrf_exempt
 def upload_file(request):
     """
-    View to handle file upload and use ChatGPT to process the file content.
+    View to handle file upload and use ChatGPT to summarize the file content.
     """
     global chat_history
 
@@ -274,18 +182,110 @@ def upload_file(request):
         if len(content) > MAX_TOKENS:
             content = content[:MAX_TOKENS]
         
-        # Ask the assistant what to do with the uploaded document
+        # Use the OpenAI API to summarize the file content
         response = client.chat.completions.create(
             model="gpt-4o",
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "user", "content": f"A document has been uploaded. Here is the content:\n\n{content}\n\nWhat would you like to do with this document?"}
+                {"role": "user", "content": f"Summarize the following document:\n\n{content}"}
             ]
         )
 
-        assistant_message = response.choices[0].message.content.strip()
-        chat_history.append({"role": "assistant", "content": convert_markdown_to_html(assistant_message)})
+        # Check if the model was able to generate a summary
+        if response.choices and response.choices[0].message.content.strip():
+            summary = response.choices[0].message.content.strip()
+            summary_html = convert_markdown_to_html(summary)
+        else:
+            summary = "Unable to generate a summary."
+            summary_html = convert_markdown_to_html(summary)
+        chat_history.append({"role": "assistant", "content": summary_html})
 
         return redirect('chat')
 
     return render(request, 'socialai/chat.html', {'chat_history': chat_history})
+
+# @csrf_exempt
+# def chat(request):
+#     """
+#     View to handle continuous chat with the OpenAI API.
+#     """
+#     global chat_history
+
+#     if request.method == 'POST':
+#         user_message = request.POST.get('message')
+#         chat_history.append({"role": "user", "content": user_message})
+
+#         response = client.chat.completions.create(
+#             model="gpt-4o",
+#             messages=chat_history
+#         )
+
+#         # Check if the model was able to generate a message
+#         if response.choices and response.choices[0].message.content.strip():
+#             assistant_message = response.choices[0].message.content.strip()
+#             assistant_message_html = convert_markdown_to_html(assistant_message)
+#         else:
+#             assistant_message = "Unable to generate a message."
+#             assistant_message_html = convert_markdown_to_html(assistant_message)
+
+#         chat_history.append({"role": "assistant", "content": assistant_message_html})
+
+#         return redirect('chat')  # Redirect to the same page to avoid resubmission
+
+#     return render(request, 'socialai/chat.html', {'chat_history': chat_history})
+
+
+# @csrf_exempt
+# def upload_file(request):
+#     """
+#     View to handle file upload and use ChatGPT to process the file content.
+#     """
+#     global chat_history
+
+#     if request.method == 'POST' and request.FILES['file']:
+#         uploaded_file = request.FILES['file']
+#         file_content = uploaded_file.read()  # Read the content before saving the file
+
+#         # Detect file type based on MIME type
+#         file_type = uploaded_file.content_type
+
+#         content = ""
+
+#         try:
+#             if file_type == 'application/pdf':
+#                 # Try to read PDF using pdfminer
+#                 content = extract_text(BytesIO(file_content))
+#             elif file_type.startswith('image/'):
+#                 # Try to read image using pytesseract
+#                 image = Image.open(BytesIO(file_content))
+#                 content = pytesseract.image_to_string(image)
+#             else:
+#                 # Try to detect the file encoding for text files
+#                 result = chardet.detect(file_content)
+#                 encoding = result['encoding']
+#                 if encoding is None:
+#                     encoding = 'utf-8'  # Use a default encoding if none was detected
+#                 content = file_content.decode(encoding)
+#         except Exception as e:
+#             content = f"Unable to read file. Error: {str(e)}"
+        
+#         # Truncate the content if it's too long
+#         MAX_TOKENS = 128000  # This is the maximum for gpt-4o
+#         if len(content) > MAX_TOKENS:
+#             content = content[:MAX_TOKENS]
+        
+#         # Ask the assistant what to do with the uploaded document
+#         response = client.chat.completions.create(
+#             model="gpt-4o",
+#             messages=[
+#                 {"role": "system", "content": "You are a helpful assistant."},
+#                 {"role": "user", "content": f"A document has been uploaded. Here is the content:\n\n{content}\n\nWhat would you like to do with this document?"}
+#             ]
+#         )
+
+#         assistant_message = response.choices[0].message.content.strip()
+#         chat_history.append({"role": "assistant", "content": convert_markdown_to_html(assistant_message)})
+
+#         return redirect('chat')
+
+#     return render(request, 'socialai/chat.html', {'chat_history': chat_history})
