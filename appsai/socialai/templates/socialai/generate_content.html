@@ -1,0 +1,32 @@
+<!-- socialai/templates/socialai/generate_content.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Generate Content</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Generate Content</h1>
+        <form method="post" class="mt-3">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="prompt" class="form-label">Enter your prompt:</label>
+                <input type="text" class="form-control" id="prompt" name="prompt" required>
+            </div>
+            <div class="mb-3">
+                <label for="content_type" class="form-label">Select content type:</label>
+                <select id="content_type" name="content_type" class="form-select" required>
+                    <option value="YouTube title">YouTube title</option>
+                    <option value="TikTok title">TikTok title</option>
+                    <option value="Facebook ad">Facebook ad</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Generate</button>
+        </form>
+    </div>
+</body>
+</html>
