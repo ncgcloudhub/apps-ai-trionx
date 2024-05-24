@@ -1,0 +1,18 @@
+<!-- File Path: appsai/socialai/templates/socialai/generate_tags_result.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Generated Tags</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Generated Tags</h1>
+        <p class="mt-3">{{ generated_text }}</p>
+        <a href="{% url 'generate_tags' %}" class="btn btn-secondary mt-3">Back</a>
+    </div>
+</body>
+</html>
