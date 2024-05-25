@@ -118,26 +118,65 @@ chat_history = [
 
 @csrf_exempt
 def chat(request):
-    """
-    View to handle continuous chat with the OpenAI API.
-    """
     global chat_history
-    
 
     if request.method == 'POST':
         user_message = request.POST.get('message')
         chat_history.append({"role": "user", "content": user_message})
 
-        response = client.chat.completions.create(
-            model="gpt-4o",
-            messages=chat_history
-        )
+        # Handle file upload if a file is attached
+        if request.FILES.get('file'):
+            uploaded_file = request.FILES['file']
+            file_content = uploaded_file.read()
+            file_type = uploaded_file.content_type
+            content = ""
 
-        assistant_message = response.choices[0].message.content.strip()
-        #assistant_message = assistant_message.replace('\n', '<br>')
-        chat_history.append({"role": "assistant", "content": assistant_message})
+            try:
+                if file_type == 'application/pdf':
+                    content = extract_text(BytesIO(file_content))
+                elif file_type.startswith('image/'):
+                    image = Image.open(BytesIO(file_content))
+                    content = pytesseract.image_to_string(image)
+                else:
+                    result = chardet.detect(file_content)
+                    encoding = result['encoding'] or 'utf-8'
+                    content = file_content.decode(encoding)
+            except Exception as e:
+                content = f"Unable to read file. Error: {str(e)}"
+            
+            MAX_TOKENS = 128000
+            if len(content) > MAX_TOKENS:
+                content = content[:MAX_TOKENS]
+            
+            response = client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": f"Summarize the following document:\n\n{content}"}
+                ]
+            )
 
-        return redirect('chat')  # Redirect to the same page to avoid resubmission
+            if response.choices and response.choices[0].message.content.strip():
+                summary = response.choices[0].message.content.strip()
+                summary_html = convert_markdown_to_html(summary)
+            else:
+                summary = "Unable to generate a summary."
+                summary_html = convert_markdown_to_html(summary)
+
+            chat_history.append({"role": "assistant", "content": summary_html})
+
+        # Handle text message as usual
+        else:
+            response = client.chat.completions.create(
+                model="gpt-4o",
+                messages=chat_history
+            )
+
+            assistant_message = response.choices[0].message.content.strip()
+            assistant_message_html = convert_markdown_to_html(assistant_message)
+            chat_history.append({"role": "assistant", "content": assistant_message_html})
+
+        return redirect('chat')
 
     return render(request, 'socialai/chat.html', {'chat_history': chat_history})
 

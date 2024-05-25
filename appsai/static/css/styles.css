@@ -1,0 +1,49 @@
+/* File Path: appsai/static/css/styles.css */
+
+.chat-box {
+    height: 1200px;
+    overflow-y: scroll;
+    padding: 50px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+
+}
+.chat-message {
+    margin-bottom: 15px;
+}
+.chat-message strong {
+    display: block;
+}
+.input-group {
+    display: flex;
+    align-items: center;
+}
+.input-group textarea {
+    resize: none;
+    overflow: hidden;
+    flex: 1;
+    border-radius: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+.input-group .input-group-append {
+    display: flex;
+    align-items: center;
+}
+.input-group .input-group-append .btn {
+    border: none;
+    background: transparent;
+    padding: 0 15px;
+}
+.input-group .input-group-append .btn i {
+    font-size: 24px;
+    cursor: pointer;
+
+}
+
+#file-name {
+    font-size: 14px;
+    color: #666;
+}
