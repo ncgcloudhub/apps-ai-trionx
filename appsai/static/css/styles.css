@@ -43,7 +43,35 @@
 
 }
 
-#file-name {
+#file-attachments { /* Ensure this block is present */
     font-size: 14px;
     color: #666;
+    margin-bottom: 10px;
+}
+.file-attachment { /* Ensure this block is present */
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.file-attachment i { /* Ensure this block is present */
+    margin-right: 5px;
+}
+
+.file-icon {
+    font-size: 24px;
+}
+.file-icon.pdf {
+    color: #e74c3c;
+}
+.file-icon.image {
+    color: #3498db;
+}
+.file-icon.text {
+    color: #2ecc71;
+}
+.file-icon.docs {
+    color: #9b59b6;
+}
+.file-icon.csv {
+    color: #f39c12;
 }
