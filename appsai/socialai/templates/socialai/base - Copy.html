@@ -1,0 +1,163 @@
+<!-- File Path: appsai/socialai/templates/socialai/base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}My AI App{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding: 0px;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">My AI App</a>
+            <button data-mdb-button-init class="navbar-toggler px-0" type="button" data-mdb-collapse-init
+                data-mdb-target="#navbarExampleOnHover" aria-controls="navbarExampleOnHover" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarExampleOnHover">
+                <ul class="navbar-nav me-auto ps-lg-0" style="padding-left: 0.15rem">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact Us</a>
+                    </li>
+                    <!-- YouTube Dropdown -->
+                    <li class="nav-item dropdown dropdown-hover position-static">
+                        <a class="nav-link dropdown-toggle" href="#" id="youtubeDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            YouTube
+                        </a>
+                        <div class="dropdown-menu w-100 mt-0" aria-labelledby="youtubeDropdown">
+                            <div class="container">
+                                <div class="row my-4">
+                                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                                        <div class="list-group list-group-flush">
+                                            <a href="{% url 'youtube_title_generator' %}" class="list-group-item list-group-item-action">YouTube Title Generator</a>
+                                            <a href="{% url 'youtube_tags_generator' %}" class="list-group-item list-group-item-action">YouTube SEO Tags Generator</a>
+                                            <a href="{% url 'youtube_description_generator' %}" class="list-group-item list-group-item-action">YouTube SEO Description Generator</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- TickTock Dropdown -->
+                    <li class="nav-item dropdown dropdown-hover position-static">
+                        <a class="nav-link dropdown-toggle" href="#" id="tiktokDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            TickTock
+                        </a>
+                        <div class="dropdown-menu w-100 mt-0" aria-labelledby="tiktokDropdown">
+                            <div class="container">
+                                <div class="row my-4">
+                                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                                        <div class="list-group list-group-flush">
+                                            <a href="{% url 'tiktok_title_generator' %}" class="list-group-item list-group-item-action">TickTock Title Generator</a>
+                                            <a href="{% url 'tiktok_tags_generator' %}" class="list-group-item list-group-item-action">TickTock SEO Tags Generator</a>
+                                            <a href="{% url 'tiktok_description_generator' %}" class="list-group-item list-group-item-action">TickTock SEO Description Generator</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Facebook Dropdown -->
+                    <li class="nav-item dropdown dropdown-hover position-static">
+                        <a class="nav-link dropdown-toggle" href="#" id="facebookDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            Facebook
+                        </a>
+                        <div class="dropdown-menu w-100 mt-0" aria-labelledby="facebookDropdown">
+                            <div class="container">
+                                <div class="row my-4">
+                                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                                        <div class="list-group list-group-flush">
+                                            <a href="{% url 'facebook_title_generator' %}" class="list-group-item list-group-item-action">Facebook Title Generator</a>
+                                            <a href="{% url 'facebook_tags_generator' %}" class="list-group-item list-group-item-action">Facebook SEO Tags Generator</a>
+                                            <a href="{% url 'facebook_description_generator' %}" class="list-group-item list-group-item-action">Facebook SEO Description Generator</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Instagram Dropdown -->
+                    <li class="nav-item dropdown dropdown-hover position-static">
+                        <a class="nav-link dropdown-toggle" href="#" id="instagramDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            Instagram
+                        </a>
+                        <div class="dropdown-menu w-100 mt-0" aria-labelledby="instagramDropdown">
+                            <div class="container">
+                                <div class="row my-4">
+                                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                                        <div class="list-group list-group-flush">
+                                            <a href="{% url 'instagram_title_generator' %}" class="list-group-item list-group-item-action">Instagram Title Generator</a>
+                                            <a href="{% url 'instagram_tags_generator' %}" class="list-group-item list-group-item-action">Instagram SEO Tags Generator</a>
+                                            <a href="{% url 'instagram_description_generator' %}" class="list-group-item list-group-item-action">Instagram SEO Description Generator</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Content Writer Dropdown -->
+                    <li class="nav-item dropdown dropdown-hover position-static">
+                        <a class="nav-link dropdown-toggle" href="#" id="contentWriterDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            Content Writer
+                        </a>
+                        <div class="dropdown-menu w-100 mt-0" aria-labelledby="contentWriterDropdown">
+                            <div class="container">
+                                <div class="row my-4">
+                                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                                        <div class="list-group list-group-flush">
+                                            <a href="{% url 'blog_title_generator' %}" class="list-group-item list-group-item-action">Blog Title Generator</a>
+                                            <a href="{% url 'blog_introduction_generator' %}" class="list-group-item list-group-item-action">Blog Introduction</a>
+                                            <a href="{% url 'blog_conclusion_generator' %}" class="list-group-item list-group-item-action">Blog Conclusion</a>
+                                            <a href="{% url 'blog_body_generator' %}" class="list-group-item list-group-item-action">Blog Description / Body</a>
+                                            <a href="{% url 'blog_tags_generator' %}" class="list-group-item list-group-item-action">Blog SEO Tags Generator</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Vlog Dropdown -->
+                    <li class="nav-item dropdown dropdown-hover position-static">
+                        <a class="nav-link dropdown-toggle" href="#" id="vlogDropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            Vlog
+                        </a>
+                        <div class="dropdown-menu w-100 mt-0" aria-labelledby="vlogDropdown">
+                            <div class="container">
+                                <div class="row my-4">
+                                    <div class="col-md-6 col-lg-3 mb-3 mb-lg-0">
+                                        <div class="list-group list-group-flush">
+                                            <a href="{% url 'vlog_title_generator' %}" class="list-group-item list-group-item-action">Vlog Title Generator</a>
+                                            <a href="{% url 'vlog_tags_generator' %}" class="list-group-item list-group-item-action">Vlog SEO Tags Generator</a>
+                                            <a href="{% url 'vlog_description_generator' %}" class="list-group-item list-group-item-action">Vlog SEO Description Generator</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJxY0Cmf5SdHf5a4w5GgFTM2Hg5L5tFOQ6I5Q5p3Kjti1BeyZ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    {% block extra_scripts %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,115 @@
+/* File Path: appsai/static/css/styles.css */
+
+body {
+    padding-top: 56px;
+}
+
+
+/* Style for the chat box */
+.chat-box {
+    height: calc(100vh - 150px);
+    overflow-y: scroll;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+}
+
+
+.chat-message {
+    margin-bottom: 15px;
+}
+.chat-message strong {
+    display: block;
+}
+.input-group {
+    display: flex;
+    align-items: center;
+}
+.input-group textarea {
+    resize: none;
+    overflow: hidden;
+    flex: 1;
+    border-radius: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+}
+.input-group .input-group-append {
+    display: flex;
+    align-items: center;
+}
+.input-group .input-group-append .btn {
+    border: none;
+    background: transparent;
+    padding: 0 15px;
+}
+.input-group .input-group-append .btn i {
+    font-size: 24px;
+    cursor: pointer;
+
+}
+
+#file-attachments { /* Ensure this block is present */
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+.file-attachment { /* Ensure this block is present */
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.file-attachment i { /* Ensure this block is present */
+    margin-right: 5px;
+}
+
+.file-icon {
+    font-size: 24px;
+}
+.file-icon.pdf {
+    color: #e74c3c;
+}
+.file-icon.image {
+    color: #3498db;
+}
+.file-icon.text {
+    color: #2ecc71;
+}
+.file-icon.docs {
+    color: #9b59b6;
+}
+.file-icon.csv {
+    color: #f39c12;
+}
+
+  
+
+
+/* Custom styles for navbar */
+.navbar-light .navbar-brand {
+    color: #4caf50; /* Light green */
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #4caf50; /* Light green */
+}
+
+.dropdown-menu-success {
+    background-color: #28a745; /* Success color */
+    color: white;
+}
+
+.dropdown-menu-success .dropdown-item {
+    color: white;
+}
+
+.dropdown-menu-success .dropdown-item:hover {
+    background-color: #218838;
+    color: white;
+}
+.navbar-nav .nav-item .nav-link {
+    color: #28a745; /* Success color for links */
+}
+
+
