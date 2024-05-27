@@ -5,6 +5,7 @@
 {% block title %}Chat with GPT-4o{% endblock %}
 
 {% block content %}
+<main>
     <h1 class="mt-5">Chat with GPT-4o</h1>
     <div class="chat-box" id="chat-box">
         {% for message in chat_history %}
@@ -29,142 +30,10 @@
                 </button>
             </div>
         </div>
-        <!-- <div id="file-name" class="mt-2"></div> -->
     </form>
+</main>
 {% endblock %}
 
 {% block extra_scripts %}
     <!-- The script tag for 'scripts.js' is already included in the base.html -->
 {% endblock %}
-
-
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Chat with GPT-4o</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
-    <style>
-        .chat-box {
-            height: 1200px;
-            overflow-y: scroll;
-            padding: 50px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            background-color: #f9f9f9;
-
-        }
-        .chat-message {
-            margin-bottom: 15px;
-        }
-        .chat-message strong {
-            display: block;
-        }
-        .input-group {
-            display: flex;
-            align-items: center;
-        }
-        .input-group textarea {
-            resize: none;
-            overflow: hidden;
-            flex: 1;
-            border-radius: 20px;
-            padding: 15px;
-            border: 1px solid #ccc;
-        }
-        .input-group .input-group-append {
-            display: flex;
-            align-items: center;
-        }
-        .input-group .input-group-append .btn {
-            border: none;
-            background: transparent;
-            padding: 0 15px;
-        }
-        .input-group .input-group-append .btn i {
-            font-size: 24px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1 class="mt-5">Chat with GPT-4o</h1>
-        <div class="chat-box" id="chat-box">
-            {% for message in chat_history %}
-                <div class="chat-message">
-                    <strong>{{ message.role|capfirst }}:</strong>
-                    <p>{{ message.content|safe }}</p>
-                </div>
-            {% endfor %}
-        </div>
-        <form method="post" id="chat-form" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="input-group mb-3">
-                <textarea name="message" class="form-control" placeholder="Type your message here..." rows="1" required></textarea>
-                <div class="input-group-append">
-                    <label class="btn">
-                        <input type="file" name="file" accept=".jpeg,.jpg,.png,.webp,.pdf" style="display: none;">
-                        <i class="bi bi-paperclip"></i>
-                    </label>
-                    <button type="submit" class="btn">
-                        <i class="bi bi-arrow-up-circle-fill"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <script>
-        // Function to scroll to the bottom of the chat box
-        function scrollToBottom() {
-            var chatBox = document.getElementById('chat-box');
-            chatBox.scrollTop = chatBox.scrollHeight;
-        }
-
-        // Scroll to the bottom on page load
-        window.onload = function() {
-            scrollToBottom();
-        };
-
-        // Scroll to the bottom on form submission
-        document.getElementById('chat-form').onsubmit = function() {
-            setTimeout(scrollToBottom, 100);
-        };
-
-        // Auto-resize the textarea
-        const textarea = document.querySelector('textarea');
-        textarea.addEventListener('input', function() {
-            this.style.height = 'auto';
-            this.style.height = this.scrollHeight + 'px';
-        });
-
-        // Submit the form when Enter key is pressed
-        textarea.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter' && !event.shiftKey) {
-                event.preventDefault();
-                document.getElementById('chat-form').submit();
-            }
-        });
-
-        // MutationObserver to watch for new messages and scroll to the bottom
-        var chatBox = document.getElementById('chat-box');
-        var observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                scrollToBottom();
-            });
-        });
-
-        // Observe changes to the chat box
-        observer.observe(chatBox, { childList: true });
-    </script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-</body>
-</html> -->
-
-
-<!-- 3rd, while openAI API key analyzing the document, can we have progress bar to show that file has been submitted, but working on analyzing until the API responses the message.  -->

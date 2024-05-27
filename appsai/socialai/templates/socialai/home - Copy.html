@@ -1,0 +1,66 @@
+<!-- File Path: appsai/socialai/templates/socialai/home.html -->
+
+{% extends "socialai/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>YouTube Tools</h2>
+            <ul>
+                <li><a href="{% url 'youtube_title_generator' %}">YouTube Title Generator</a></li>
+                <li><a href="{% url 'youtube_tags_generator' %}">YouTube SEO Tags Generator</a></li>
+                <li><a href="{% url 'youtube_description_generator' %}">YouTube SEO Description Generator</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h2>TickTock Tools</h2>
+            <ul>
+                <li><a href="{% url 'tiktok_title_generator' %}">TickTock Title Generator</a></li>
+                <li><a href="{% url 'tiktok_tags_generator' %}">TickTock SEO Tags Generator</a></li>
+                <li><a href="{% url 'tiktok_description_generator' %}">TickTock SEO Description Generator</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h2>Facebook Tools</h2>
+            <ul>
+                <li><a href="{% url 'facebook_title_generator' %}">Facebook Title Generator</a></li>
+                <li><a href="{% url 'facebook_tags_generator' %}">Facebook SEO Tags Generator</a></li>
+                <li><a href="{% url 'facebook_description_generator' %}">Facebook SEO Description Generator</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h2>Instagram Tools</h2>
+            <ul>
+                <li><a href="{% url 'instagram_title_generator' %}">Instagram Title Generator</a></li>
+                <li><a href="{% url 'instagram_tags_generator' %}">Instagram SEO Tags Generator</a></li>
+                <li><a href="{% url 'instagram_description_generator' %}">Instagram SEO Description Generator</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h2>Content Writer Tools</h2>
+            <ul>
+                <li><a href="{% url 'blog_title_generator' %}">Blog Title Generator</a></li>
+                <li><a href="{% url 'blog_introduction_generator' %}">Blog Introduction</a></li>
+                <li><a href="{% url 'blog_conclusion_generator' %}">Blog Conclusion</a></li>
+                <li><a href="{% url 'blog_body_generator' %}">Blog Description / Body</a></li>
+                <li><a href="{% url 'blog_tags_generator' %}">Blog SEO Tags Generator</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h2>Vlog Tools</h2>
+            <ul>
+                <li><a href="{% url 'vlog_title_generator' %}">Vlog Title Generator</a></li>
+                <li><a href="{% url 'vlog_tags_generator' %}">Vlog SEO Tags Generator</a></li>
+                <li><a href="{% url 'vlog_description_generator' %}">Vlog SEO Description Generator</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
