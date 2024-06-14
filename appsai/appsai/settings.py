@@ -140,19 +140,56 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# settings.py
+# settings.py
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
     'handlers': {
-        'file': {
+        'console': {
+            'level': 'DEBUG',  # Ensure console handler level is set to DEBUG
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'file_debug': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filename': 'debug.log',
+            'formatter': 'verbose',
+        },
+        'file_info': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'info.log',
+            'formatter': 'verbose',
+        },
+        'file_warning': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': 'warning.log',
+            'formatter': 'verbose',
+        },
+        'file_error': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': 'error.log',
+            'formatter': 'verbose',
         },
     },
     'loggers': {
         'django': {
-            'handlers': ['file'],
+            'handlers': ['console', 'file_debug', 'file_info', 'file_warning', 'file_error'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'socialai.views': {
+            'handlers': ['console', 'file_debug', 'file_info', 'file_warning', 'file_error'],
             'level': 'DEBUG',
             'propagate': True,
         },
