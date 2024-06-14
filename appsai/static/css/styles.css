@@ -13,25 +13,11 @@ main {
     flex-direction: column;
     flex-grow: 1;
     overflow: hidden;
-     padding-bottom: 70px; /* Ensure space for the fixed input group */
+    padding-bottom: 70px; /* Ensure space for the fixed input group */
 }
 
-
-/* Style for the chat box */
-/* .chat-box {
-    flex-grow: 1; 
-    height: calc(100vh - 250px); 
-    overflow-y: auto; 
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px; 
-    background-color: #f9f9f9;
-    display: flex;
-    flex-direction: column-reverse;
-} */
-
 .chat-box {
-    flex-grow: 1; /* Allow the chat box to grow and fill available space */
+    flex-grow: 1;
     overflow-y: auto; /* Ensure the chat box has its own scrollbar */
     padding: 20px;
     border: 1px solid #ccc;
@@ -48,7 +34,6 @@ main {
 .chat-message strong {
     display: block;
 }
-
 
 .input-group {
     display: flex;
@@ -88,17 +73,17 @@ main {
 }
 
 
-#file-attachments { /* Ensure this block is present */
+#file-attachments {
     font-size: 14px;
     color: #666;
     margin-bottom: 10px;
 }
-.file-attachment { /* Ensure this block is present */
+.file-attachment {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
 }
-.file-attachment i { /* Ensure this block is present */
+.file-attachment i {
     margin-right: 5px;
 }
 
@@ -120,7 +105,6 @@ main {
 .file-icon.csv {
     color: #f39c12;
 }
-
 
 /* Custom styles for navbar */
 .navbar-light .navbar-brand {
@@ -147,4 +131,3 @@ main {
 .navbar-nav .nav-item .nav-link {
     color: #28a745; /* Success color for links */
 }
-

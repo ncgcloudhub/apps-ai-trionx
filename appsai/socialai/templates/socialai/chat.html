@@ -1,21 +1,24 @@
 <!-- File Path: appsai/socialai/templates/socialai/chat.html -->
 
 {% extends "socialai/base.html" %}
+{% load static %}
 
 {% block title %}Chat with GPT-4o{% endblock %}
 
 {% block content %}
 <main>
     <h1 class="mt-5">Chat with GPT-4o</h1>
-    <div class="chat-box" id="chat-box">
-        {% for message in chat_history %}
-            <div class="chat-message">
-                <strong>{{ message.role|capfirst }}:</strong>
-                <p>{{ message.content|safe }}</p>
-            </div>
-        {% endfor %}
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            {% for message in chat_history %}
+                <div class="chat-message">
+                    <strong>{{ message.role|capfirst }}:</strong>
+                    <p>{{ message.content|safe }}</p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-    <form method="post" id="chat-form" enctype="multipart/form-data">
+    <form method="post" id="chat-form" enctype="multipart/form-data" class="chat-input">
         {% csrf_token %}
         <div id="file-attachments" class="mb-3"></div> 
         <div class="input-group mb-3">
@@ -35,5 +38,18 @@
 {% endblock %}
 
 {% block extra_scripts %}
-    <!-- The script tag for 'scripts.js' is already included in the base.html -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var chatBox = document.getElementById("chat-box");
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        var chatForm = document.getElementById("chat-form");
+        chatForm.addEventListener("submit", function () {
+            setTimeout(function () {
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 100);
+        });
+    });
+</script>
 {% endblock %}
+
