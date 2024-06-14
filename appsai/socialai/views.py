@@ -16,6 +16,7 @@ from pdfminer.high_level import extract_text
 import markdown
 from PIL import Image
 import pytesseract
+from django.shortcuts import render
 
 
 # Create your views here.
@@ -24,6 +25,77 @@ import pytesseract
 # Create an instance of the OpenAI client
 # Create an instance of the OpenAI client
 client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+# views.py
+
+from django.shortcuts import render
+
+def home(request):
+    return render(request, 'socialai/home.html')
+
+def contact(request):
+    return render(request, 'socialai/contact.html')
+
+def youtube_title_generator(request):
+    return render(request, 'socialai/youtube_title_generator.html')
+
+def youtube_tags_generator(request):
+    return render(request, 'socialai/youtube_tags_generator.html')
+
+def youtube_description_generator(request):
+    return render(request, 'socialai/youtube_description_generator.html')
+
+def tiktok_title_generator(request):
+    return render(request, 'socialai/tiktok_title_generator.html')
+
+def tiktok_tags_generator(request):
+    return render(request, 'socialai/tiktok_tags_generator.html')
+
+def tiktok_description_generator(request):
+    return render(request, 'socialai/tiktok_description_generator.html')
+
+def facebook_title_generator(request):
+    return render(request, 'socialai/facebook_title_generator.html')
+
+def facebook_tags_generator(request):
+    return render(request, 'socialai/facebook_tags_generator.html')
+
+def facebook_description_generator(request):
+    return render(request, 'socialai/facebook_description_generator.html')
+
+def instagram_title_generator(request):
+    return render(request, 'socialai/instagram_title_generator.html')
+
+def instagram_tags_generator(request):
+    return render(request, 'socialai/instagram_tags_generator.html')
+
+def instagram_description_generator(request):
+    return render(request, 'socialai/instagram_description_generator.html')
+
+def blog_title_generator(request):
+    return render(request, 'socialai/blog_title_generator.html')
+
+def blog_introduction_generator(request):
+    return render(request, 'socialai/blog_introduction_generator.html')
+
+def blog_conclusion_generator(request):
+    return render(request, 'socialai/blog_conclusion_generator.html')
+
+def blog_body_generator(request):
+    return render(request, 'socialai/blog_body_generator.html')
+
+def blog_tags_generator(request):
+    return render(request, 'socialai/blog_tags_generator.html')
+
+def vlog_title_generator(request):
+    return render(request, 'socialai/vlog_title_generator.html')
+
+def vlog_tags_generator(request):
+    return render(request, 'socialai/vlog_tags_generator.html')
+
+def vlog_description_generator(request):
+    return render(request, 'socialai/vlog_description_generator.html')
+
+
 
 def convert_markdown_to_html(markdown_text):
     html = markdown.markdown(markdown_text)

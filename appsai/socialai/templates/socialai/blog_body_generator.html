@@ -1,0 +1,22 @@
+{% extends "socialai/base.html" %}
+
+{% block title %}Blog Body Generator{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5 text-center">Blog Description / Body</h1>
+    <form method="post" class="d-flex flex-column align-items-center">
+        {% csrf_token %}
+        <div class="mb-3 w-50">
+            <label for="prompt" class="form-label">Enter your prompt:</label>
+            <input type="text" id="prompt" name="prompt" class="form-control" required>
+        </div>
+        <div class="mb-3 w-50">
+            <label for="content_type" class="form-label">Select content type:</label>
+            <select id="content_type" name="content_type" class="form-select" required>
+                <option value="Blog body">Blog body</option>
+                <!-- Add more options as needed -->
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Generate</button>
+    </form>
+{% endblock %}
